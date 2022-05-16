@@ -1,12 +1,11 @@
-import Home from "@pages/Home";
-
 import "./App.css";
+
+import PokemonList from "@pages/PokemonList";
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <p>coucou</p>
+      <PokemonList />
     </div>
   );
 }
