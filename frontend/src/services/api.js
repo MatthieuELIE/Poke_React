@@ -7,6 +7,6 @@ export const fetchPokemons = async (limit, offset) => {
     .results;
 };
 
-export const getOnePokemon = async (id) => {
-  axios(`${API_URL}pokemon/${id}`);
+export const fetchOnePokemonByUrl = async (url) => {
+  return (await axios(url)).data;
 };

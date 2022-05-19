@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.normal {
+    color: rgb(133, 133, 132)
+}
+
+.fighting {
+    color: rgb(131, 45, 41)
+}
+
+.flying {
+    color: rgb(118, 139, 141)
+}
+
+.poison {
+    color: rgb(119, 67, 117)
+}
+
+.ground {
+    color: rgb(150, 139, 88);
+}
+
+.rock {
+    color: rgb(136, 116, 74)
+}
+
+.bug {
+    color: rgb(142, 153, 79)
+}
+
+.ghost {
+    color: rgb(73, 84, 100)
+}
+
+.steel {
+    color: rgb(130, 133, 139)
+}
+
+.fire {
+    color: rgb(174, 96, 41)
+}
+
+.water {
+    color: rgb(69, 129, 139)
+}
+
+.grass {
+    color: rgb(103, 160, 79);
+}
+
+.electric {
+    color: rgb(136, 147, 52)
+}
+
+.psychic {
+    color: rgb(163, 85, 170)
+}
+
+.ice {
+    color: rgb(125, 163, 160);
+}
+
+.dragon {
+    color: rgb(91, 116, 151)
+}
+
+.dark {
+    color: rgb(76, 75, 75)
+}
+
+.fairy {
+    color: rgb(177, 129, 158)
+}
