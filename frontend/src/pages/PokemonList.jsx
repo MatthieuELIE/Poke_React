@@ -20,7 +20,7 @@ export default function PokemonList() {
   return (
     <div>
       <h1 className="font-bold text-center text-3xl m-1 p-2">Pokemon List</h1>
-      <div className="flex flex-wrap w-2/3 mx-auto justify-center text-center">
+      <div className="flex flex-wrap w-2/3 md:w-3/4 mx-auto justify-center text-center">
         {pokemons
           .sort((a, b) => a.id - b.id)
           .map((pokemon) => (
@@ -29,6 +29,7 @@ export default function PokemonList() {
               id={pokemon.id}
               name={pokemon.name}
               image={pokemon.sprites.front_default}
+              type={pokemon.types[0].type.name}
             />
           ))}
         <button
