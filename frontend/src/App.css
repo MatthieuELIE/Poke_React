@@ -2,74 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
 .normal {
-    background-color: rgb(180, 179, 178);
+    background: linear-gradient(0.45turn, rgb(180, 179, 178, 0.3), rgb(180, 179, 178));
 }
 
 .fighting {
-    background-color: rgb(177, 61, 56)
+    background: linear-gradient(0.45turn, rgb(177, 61, 56, 0.3), rgb(177, 61, 56));
 }
 
 .flying {
-    background-color: rgb(159, 188, 190)
+    background: linear-gradient(0.45turn, rgb(159, 188, 190, 0.3), rgb(159, 188, 190));
 }
 
 .poison {
-    background-color: rgb(160, 90, 158)
+    background: linear-gradient(0.45turn, rgb(160, 90, 158, 0.3), rgb(160, 90, 158));
 }
 
 .ground {
-    background-color: rgb(203, 188, 119);
+    background: linear-gradient(0.45turn, rgb(203, 188, 119, 0.3), rgb(203, 188, 119));
 }
 
 .rock {
-    background-color: rgb(183, 157, 100)
+    background: linear-gradient(0.45turn, rgb(183, 157, 100, 0.3), rgb(183, 157, 100));
 }
 
 .bug {
-    background-color: rgb(192, 207, 106)
+    background: linear-gradient(0.45turn, rgb(192, 207, 106, 0.3), rgb(192, 207, 106));
 }
 
 .ghost {
-    background-color: rgb(98, 113, 135)
+    background: linear-gradient(0.45turn, rgb(98, 113, 135, 0.3), rgb(98, 113, 135));
 }
 
 .steel {
-    background-color: rgb(176, 180, 187)
+    background: linear-gradient(0.45turn, rgb(176, 180, 187, 0.3), rgb(176, 180, 187));
 }
 
 .fire {
-    background-color: rgb(235, 129, 56)
+    background: linear-gradient(0.45turn, rgb(235, 129, 56, 0.3), rgb(235, 129, 56));
 }
 
 .water {
-    background-color: rgb(93, 174, 187)
+    background: linear-gradient(0.45turn, rgb(93, 174, 187, 0.3), rgb(93, 174, 187));
 }
 
 .grass {
-    background-color: rgb(139, 216, 106);
+    background: linear-gradient(0.45turn, rgb(139, 216, 106, 0.3), rgb(139, 216, 106));
 }
 
 .electric {
-    background-color: rgb(221, 198, 70)
+    background: linear-gradient(0.45turn, rgba(221, 198, 70, 0.3), rgb(221, 198, 70));
 }
 
 .psychic {
-    background-color: rgb(220, 115, 230)
+    background: linear-gradient(0.45turn, rgb(220, 115, 230, 0.3), rgb(220, 115, 230));
 }
 
 .ice {
-    background-color: rgb(169, 220, 216);
+    background: linear-gradient(0.45turn, rgb(169, 220, 216, 0.3), rgb(169, 220, 216));
 }
 
 .dragon {
-    background-color: rgb(123, 156, 204)
+    background: linear-gradient(0.45turn, rgb(123, 156, 204, 0.3), rgb(123, 156, 204));
 }
 
 .dark {
-    background-color: rgb(101, 101, 101)
+    background: linear-gradient(0.45turn, rgb(101, 101, 101, 0.3), rgb(101, 101, 101));
 }
 
 .fairy {
-    background-color: rgb(238, 174, 213)
+    background: linear-gradient(0.45turn, rgb(238, 174, 213, 0.3), rgb(238, 174, 213));
 }

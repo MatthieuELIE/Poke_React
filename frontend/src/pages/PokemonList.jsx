@@ -18,8 +18,10 @@ export default function PokemonList() {
   }, [offset]);
 
   return (
-    <div>
-      <h1 className="font-bold text-center text-3xl m-1 p-2">Pokemon List</h1>
+    <div className="bg-amber-100">
+      <h1 className="font-bold text-center text-3xl p-8 poppins">
+        Pokemon List
+      </h1>
       <div className="flex flex-wrap w-2/3 md:w-3/4 mx-auto justify-center text-center">
         {pokemons
           .sort((a, b) => a.id - b.id)
@@ -35,7 +37,7 @@ export default function PokemonList() {
         <button
           onClick={() => setOffset(offset + 20)}
           type="button"
-          className="w-full font-bold text-center text-xl p-2 m-4"
+          className="w-full font-bold text-center text-xl p-2 m-4 poppins hover:opacity-50 hover:scale-105 duration-700 ease-in-out"
         >
           Load More Pokemons...
         </button>
