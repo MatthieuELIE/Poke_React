@@ -22,10 +22,9 @@ export default function Navbar() {
             </h1>
           </div>
           <div
-            className={
-              "lg:flex flex-grow items-center" +
-              (navbarOpen ? " flex" : " hidden")
-            }
+            className={`lg:flex flex-grow items-center${
+              navbarOpen ? " flex" : " hidden"
+            }`}
             id="example-navbar-danger"
           >
             <ul className="flex flex-col justify-center lg:flex-row list-none lg:ml-auto">
