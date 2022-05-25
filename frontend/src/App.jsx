@@ -5,6 +5,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Navbar from "@components/Navbar";
 import Home from "@pages/Home";
 import PokemonList from "@pages/PokemonList";
+import Searchpage from "@pages/Searchpage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/pokemonlist" element={<PokemonList />} />
+            <Route path="/searchpokemon" element={<Searchpage />} />
           </Routes>
         </main>
       </BrowserRouter>

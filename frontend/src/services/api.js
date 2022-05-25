@@ -10,3 +10,7 @@ export const fetchPokemons = async (limit, offset) => {
 export const fetchOnePokemonByUrl = async (url) => {
   return (await axios(url)).data;
 };
+
+export const fetchOnePokemonByName = async (pokemonName) => {
+  return (await axios(`${API_URL}pokemon/${pokemonName}`)).data;
+};
