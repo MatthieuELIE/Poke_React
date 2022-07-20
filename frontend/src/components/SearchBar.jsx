@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { fetchOnePokemonByName } from "@services/api";
 
@@ -26,16 +27,16 @@ export default function Searchpage() {
   }, [pokemonName]);
 
   return (
-    <div className="my-24">
+    <div className="mt-24 mb-12">
       <div className="flex justify-center">
         <div className="mb-2 xl:w-96">
           <form onSubmit={submitPokemonSearch}>
             <label
               htmlFor="exampleSearch2"
               aria-label="search"
-              className="form-label inline-block mb-2 text-gray-700 poppins font-bold"
+              className="form-label inline-block mb-2 text-gray-700 poppins font-bold text-center"
             >
-              Looking for a Pokemon ?...
+              Looking for something ?...
             </label>
             <input
               type="search"
@@ -49,13 +50,17 @@ export default function Searchpage() {
         </div>
       </div>
       {pokemon && (
-        <PokemonCard
-          key={pokemon.id}
-          id={pokemon.id}
-          name={pokemon.name}
-          image={pokemon.sprites.front_default}
-          type={pokemon.types[0].type.name}
-        />
+        <div className="flex justify-center w-1/3 mx-auto my-12">
+          <Link to={`/pokemon/${pokemon.id}`}>
+            <PokemonCard
+              key={pokemon.id}
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.sprites.front_default}
+              type={pokemon.types[0].type.name}
+            />
+          </Link>
+        </div>
       )}
     </div>
   );

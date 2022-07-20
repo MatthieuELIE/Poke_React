@@ -29,6 +29,7 @@
       }
     }],
     "react/prop-types": "off",
+    "react/no-array-index-key" : "off",
     "no-restricted-syntax": [
       "error",
       {

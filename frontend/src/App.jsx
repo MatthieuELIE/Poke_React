@@ -2,10 +2,13 @@ import "./App.css";
 
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-import Navbar from "@components/Navbar";
 import Home from "@pages/Home";
 import PokemonList from "@pages/PokemonList";
-import Searchpage from "@pages/Searchpage";
+import PokemonPage from "@pages/PokemonPage";
+import ItemList from "@pages/ItemList";
+import ItemPage from "@pages/ItemPage";
+
+import Navbar from "@components/Navbar";
 
 function App() {
   return (
@@ -16,7 +19,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/pokemonlist" element={<PokemonList />} />
-            <Route path="/searchpokemon" element={<Searchpage />} />
+            <Route path="/pokemon/:pokemonId" element={<PokemonPage />} />
+            <Route path="/itemlist" element={<ItemList />} />
+            <Route path="/item/:itemId" element={<ItemPage />} />
           </Routes>
         </main>
       </BrowserRouter>
