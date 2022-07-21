@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { navbarData } from "@services/navbarData";
+
 import logo from "@assets/logo.png";
 
 export default function Navbar() {
@@ -30,27 +32,15 @@ export default function Navbar() {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col justify-center lg:flex-row list-none lg:ml-auto mr-4">
-              <Link to="/">
-                <li className="nav-item">
-                  <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
-                    Home
-                  </p>
-                </li>
-              </Link>
-              <Link to="/pokemonlist">
-                <li className="nav-item">
-                  <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
-                    Pokemon List
-                  </p>
-                </li>
-              </Link>
-              <Link to="/itemlist">
-                <li className="nav-item">
-                  <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
-                    Item List
-                  </p>
-                </li>
-              </Link>
+              {navbarData.map((data) => (
+                <Link key={data.id} to={data.link}>
+                  <li className="nav-item">
+                    <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
+                      {data.name}
+                    </p>
+                  </li>
+                </Link>
+              ))}
             </ul>
           </div>
         </div>
