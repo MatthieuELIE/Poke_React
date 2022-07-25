@@ -1,16 +1,29 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { UserContext } from "@components/UserContextProvider";
 
 import { navBarStandardLinks, navbarUserLinks } from "@services/navbarData";
+import { logout } from "@services/api";
 
 import logo from "@assets/logo.png";
 
 export default function Navbar() {
-  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
 
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+
+  const handleLinkClick = async (e) => {
+    const name = e.target.getAttribute("name");
+
+    if (name === "Logout") {
+      setNavbarOpen(!navbarOpen);
+      navigate("/login");
+      await logout();
+      setUser(null);
+    }
+  };
 
   return (
     <div>
@@ -42,7 +55,10 @@ export default function Navbar() {
                   ((link.private && user) || !link.private) && (
                     <Link key={key} to={link.link}>
                       <li className="nav-item">
-                        <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
+                        <p
+                          value={link.name}
+                          className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins"
+                        >
                           {link.name}
                         </p>
                       </li>
@@ -53,9 +69,12 @@ export default function Navbar() {
                 user
                   ? link.private &&
                     user && (
-                      <Link key={key} to={link.link}>
+                      <Link key={key} to={link.link} onClick={handleLinkClick}>
                         <li className="nav-item">
-                          <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
+                          <p
+                            name={link.name}
+                            className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins"
+                          >
                             {link.name}
                           </p>
                         </li>

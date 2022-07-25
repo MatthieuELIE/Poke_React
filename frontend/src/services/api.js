@@ -4,9 +4,14 @@ const API_POKEMON_URL = "https://pokeapi.co/api/v2/";
 
 const API_URL = "http://localhost:5000";
 
+const pokeReactApi = axios.create({
+  withCredentials: true,
+});
+
 /**
  * Api Pokemons
  */
+
 export const fetchPokemons = async (limit, offset) => {
   return (
     await axios(`${API_POKEMON_URL}pokemon?limit=${limit}&offset=${offset}`)
@@ -33,6 +38,7 @@ export const fetchPokemonEncountersById = async (pokemonid) => {
 /**
  * Api Items
  */
+
 export const fetchItems = async (limit, offset) => {
   return (await axios(`${API_POKEMON_URL}item?limit=${limit}&offset=${offset}`))
     .data.results;
@@ -49,14 +55,19 @@ export const fetchOneItemById = async (itemId) => {
 /**
  * Api Users
  */
+
 export const login = async (data) => {
-  return (await axios.post(`${API_URL}/login`, data)).data;
+  return (await pokeReactApi.post(`${API_URL}/login`, data)).data;
 };
 
 export const fetchMe = async (data) => {
   try {
-    return (await axios.get(`${API_URL}/me`, data)).data;
+    return (await pokeReactApi.get(`${API_URL}/me`, data)).data;
   } catch (err) {
     return null;
   }
+};
+
+export const logout = async (data) => {
+  return (await pokeReactApi.delete(`${API_URL}/logout`, data)).data;
 };
