@@ -4,6 +4,10 @@ const API_POKEMON_URL = "https://pokeapi.co/api/v2/";
 
 const API_URL = "http://localhost:5000";
 
+const pokeReactApi = axios.create({
+  withCredentials: true,
+});
+
 /**
  * Api Pokemons
  */
@@ -50,12 +54,12 @@ export const fetchOneItemById = async (itemId) => {
  * Api Users
  */
 export const login = async (data) => {
-  return (await axios.post(`${API_URL}/login`, data)).data;
+  return (await pokeReactApi.post(`${API_URL}/login`, data)).data;
 };
 
 export const fetchMe = async (data) => {
   try {
-    return (await axios.get(`${API_URL}/me`, data)).data;
+    return (await pokeReactApi.get(`${API_URL}/me`, data)).data;
   } catch (err) {
     return null;
   }

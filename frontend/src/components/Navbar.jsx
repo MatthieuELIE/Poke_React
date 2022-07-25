@@ -12,6 +12,10 @@ export default function Navbar() {
 
   const [navbarOpen, setNavbarOpen] = React.useState(false);
 
+  const handleLinkClick = (e) => {
+    console.error(e.target);
+  };
+
   return (
     <div>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 mx-4">
@@ -62,7 +66,7 @@ export default function Navbar() {
                       </Link>
                     )
                   : !link.private && (
-                      <Link key={key} to={link.link}>
+                      <Link key={key} to={link.link} onClick={handleLinkClick}>
                         <li className="nav-item">
                           <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
                             {link.name}

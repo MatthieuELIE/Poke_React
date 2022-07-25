@@ -4,14 +4,15 @@ const Joi = require("joi");
 const models = require("../models");
 
 class UserController {
-  // static me = async (req, res) => {
-  //   const user = req.session.user;
+  static me = async (req, res) => {
+    const { user } = req.session;
 
-  //   if (!user) {
-  //     return res.sendStatus(401);
-  //   }
-  //   return res.send(user);
-  // };
+    if (!user) {
+      return res.sendStatus(401);
+    }
+
+    return res.send(user);
+  };
 
   static login = async (req, res) => {
     const { email, password } = req.body;
@@ -22,7 +23,7 @@ class UserController {
     }).validate({ email, password }, { abortEarly: false });
 
     if (validation.error) {
-      return res.status(400).send("Email or password incorrect");
+      return res.status(400).send("Nickname or password incorrect");
     }
 
     const [data] = await models.users.findByEmail(email);
@@ -35,7 +36,9 @@ class UserController {
 
     if (await argon2.verify(user.password, password)) {
       delete user.password;
+
       req.session.user = user;
+
       return res.send(user);
     }
 
