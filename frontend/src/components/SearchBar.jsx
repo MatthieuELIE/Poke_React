@@ -27,7 +27,7 @@ export default function Searchpage() {
   }, [pokemonName]);
 
   return (
-    <div className="mt-24 mb-16">
+    <div className="mt-24 mb-12">
       <div className="flex justify-center">
         <div className="mb-2 xl:w-96">
           <form onSubmit={submitPokemonSearch}>
@@ -40,7 +40,7 @@ export default function Searchpage() {
             </label>
             <input
               type="search"
-              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none poppins"
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none poppins"
               id="exampleSearch2"
               placeholder="Type your pokemon's name !"
               value={pokemonSearch}
@@ -50,7 +50,7 @@ export default function Searchpage() {
         </div>
       </div>
       {pokemon && (
-        <div className="flex justify-center w-1/3 mx-auto my-8">
+        <div className="flex justify-center w-1/3 mx-auto my-12">
           <Link to={`/pokemon/${pokemon.id}`}>
             <PokemonCard
               key={pokemon.id}
