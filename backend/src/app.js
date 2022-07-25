@@ -1,25 +1,11 @@
-const path = require("path");
 const express = require("express");
-const session = require("express-session");
+const path = require("path");
 
 const cors = require("cors");
 
 // let's create express app
 
 const app = express();
-
-app.use(
-  session({
-    name: "PokeReact",
-    secret: "GengarBestPokemonAndHeIsTheGoat!",
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      secure: false,
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-  })
-);
 
 // use some application-level middlewares
 app.use(
