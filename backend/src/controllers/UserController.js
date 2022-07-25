@@ -44,6 +44,18 @@ class UserController {
 
     return res.sendStatus(401);
   };
+
+  static logout = async (req, res) => {
+    try {
+      if (req.session) {
+        req.session.destroy();
+      }
+
+      return res.sendStatus(204);
+    } catch (err) {
+      return res.sendStatus(400);
+    }
+  };
 }
 
 module.exports = UserController;

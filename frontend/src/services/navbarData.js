@@ -7,5 +7,5 @@ export const navBarStandardLinks = [
 
 export const navbarUserLinks = [
   { name: "Login", link: "login", private: false },
-  { name: "Logout", link: "logout", private: true },
+  { name: "Logout", link: "/", private: true },
 ];

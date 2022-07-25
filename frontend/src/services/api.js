@@ -11,6 +11,7 @@ const pokeReactApi = axios.create({
 /**
  * Api Pokemons
  */
+
 export const fetchPokemons = async (limit, offset) => {
   return (
     await axios(`${API_POKEMON_URL}pokemon?limit=${limit}&offset=${offset}`)
@@ -37,6 +38,7 @@ export const fetchPokemonEncountersById = async (pokemonid) => {
 /**
  * Api Items
  */
+
 export const fetchItems = async (limit, offset) => {
   return (await axios(`${API_POKEMON_URL}item?limit=${limit}&offset=${offset}`))
     .data.results;
@@ -53,6 +55,7 @@ export const fetchOneItemById = async (itemId) => {
 /**
  * Api Users
  */
+
 export const login = async (data) => {
   return (await pokeReactApi.post(`${API_URL}/login`, data)).data;
 };
@@ -63,4 +66,8 @@ export const fetchMe = async (data) => {
   } catch (err) {
     return null;
   }
+};
+
+export const logout = async (data) => {
+  return (await pokeReactApi.delete(`${API_URL}/logout`, data)).data;
 };
