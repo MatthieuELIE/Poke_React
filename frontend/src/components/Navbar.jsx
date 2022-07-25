@@ -6,7 +6,7 @@ import { UserContext } from "@components/UserContextProvider";
 import { navBarStandardLinks, navbarUserLinks } from "@services/navbarData";
 import { logout } from "@services/api";
 
-import logo from "@assets/logo.png";
+import Logo from "@assets/Logo.png";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setNavbarOpen(!navbarOpen)}
               >
-                <img src={logo} alt="Poke-React" className="w-10 h-10" />
+                <img src={Logo} alt="Poke-React" className="w-10 h-10" />
               </button>
               <h1 className="m-auto text-center hidden lg:block font-bold text-3xl poppins">
                 Poke-React

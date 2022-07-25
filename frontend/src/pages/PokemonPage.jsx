@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
+import { UserContext } from "@components/UserContextProvider";
+
 import { fetchOnePokemonById, fetchPokemonEncountersById } from "@services/api";
+
+import LikeColor from "@assets/LikeColor.png";
+import LikeBlack from "@assets/LikeBlack.png";
 
 import { statsData } from "@services/statsData";
 
 export default function PokemonPage() {
+  const { user } = useContext(UserContext);
+
   const [pokemon, setPokemon] = useState();
   const [pokemonImg, setPokemonImg] = useState();
   const [encounters, setEncounters] = useState();
@@ -29,7 +36,7 @@ export default function PokemonPage() {
   return (
     <div>
       <div className="bg-amber-200 w-[90%] py-10 px-10 mx-auto my-24 border-4 border-black rounded-xl shadow-lg">
-        <div>
+        <div className="flex justify-between">
           <div className="sm:flex space-x-7 md:items-start items-center">
             <div
               className={`w-56 ${pokemon.types[0].type.name} p-2 m-2 flex flex-col justify-center items-center border-4 border-black rounded-xl shadow-lg`}
@@ -40,49 +47,60 @@ export default function PokemonPage() {
                 alt={pokemon.name}
               />
             </div>
-            <div>
-              <h1 className="text-slate-700 text-4xl font-bold my-2 capitalize">
-                {pokemon.name} - #{pokemon.id}
-              </h1>
+            <div className="flex">
               <div>
-                <button
-                  type="button"
-                  value={pokemon.sprites.front_default}
-                  onClick={(e) => setPokemonImg(e.target.value)}
-                  className="border-2 px-2 py-2 m-1 w-36 rounded-md border-slate-600 text-slate-600 hover:bg-slate-600 hover:text-slate-100 transition duration-75"
-                >
-                  FRONT
-                </button>
-                <button
-                  type="button"
-                  value={pokemon.sprites.back_default}
-                  onClick={(e) => setPokemonImg(e.target.value)}
-                  className="border-2 px-2 py-2 m-1 w-36 rounded-md border-slate-600 text-slate-600 hover:bg-slate-600 hover:text-slate-100 transition duration-75"
-                >
-                  BACK
-                </button>
-                <button
-                  type="button"
-                  value={pokemon.sprites.front_shiny}
-                  onClick={(e) => setPokemonImg(e.target.value)}
-                  className="border-2 px-2 py-2 m-1 w-36 rounded-md border-slate-600 text-slate-600 hover:bg-slate-600 hover:text-slate-100 transition duration-75"
-                >
-                  SHINY
-                </button>
-              </div>
-              <div className="my-6 mx-4 p-2 flex flex-col capitalize">
-                <h3 className="px-2 mx-2 font-semibold text-xl text-slate-700 my-auto">
-                  Type
-                  <span>{"s".repeat(pokemon.types.length > 1 ? 1 : 0)}</span> :
-                </h3>
-                {pokemon.types.map((type) => (
-                  <p className="px-4 mx-2 font-semibold text-lg text-slate-600">
-                    {type.type.name}
-                  </p>
-                ))}
+                <h1 className="text-slate-700 text-4xl font-bold my-2 capitalize">
+                  {pokemon.name} - #{pokemon.id}
+                </h1>
+                <div>
+                  <button
+                    type="button"
+                    value={pokemon.sprites.front_default}
+                    onClick={(e) => setPokemonImg(e.target.value)}
+                    className="border-2 px-2 py-2 m-1 w-36 rounded-md border-slate-600 text-slate-600 hover:bg-slate-600 hover:text-slate-100 transition duration-75"
+                  >
+                    FRONT
+                  </button>
+                  <button
+                    type="button"
+                    value={pokemon.sprites.back_default}
+                    onClick={(e) => setPokemonImg(e.target.value)}
+                    className="border-2 px-2 py-2 m-1 w-36 rounded-md border-slate-600 text-slate-600 hover:bg-slate-600 hover:text-slate-100 transition duration-75"
+                  >
+                    BACK
+                  </button>
+                  <button
+                    type="button"
+                    value={pokemon.sprites.front_shiny}
+                    onClick={(e) => setPokemonImg(e.target.value)}
+                    className="border-2 px-2 py-2 m-1 w-36 rounded-md border-slate-600 text-slate-600 hover:bg-slate-600 hover:text-slate-100 transition duration-75"
+                  >
+                    SHINY
+                  </button>
+                </div>
+                <div className="my-6 mx-4 p-2 flex flex-col capitalize">
+                  <h3 className="px-2 mx-2 font-semibold text-xl text-slate-700 my-auto">
+                    Type
+                    <span>
+                      {"s".repeat(pokemon.types.length > 1 ? 1 : 0)}
+                    </span>{" "}
+                    :
+                  </h3>
+                  {pokemon.types.map((type) => (
+                    <p className="px-4 mx-2 font-semibold text-lg text-slate-600">
+                      {type.type.name}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+          {user && (
+            <div>
+              <img src={LikeColor} alt="Pokemon Liked" width="50px" />
+              <img src={LikeBlack} alt="Pokemon Liked" width="50px" />
+            </div>
+          )}
         </div>
         <div className="mt-8 sm:grid grid-cols-3 sm:space-x-4">
           <div className="bg-amber-100 border-slate-600 border-2 p-6 rounded-md mb-4 flex flex-row justify-between content-center shadow-md">
