@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+
+import { UserContext } from "@components/UserContextProvider";
+
+import { navBarStandardLinks, navbarUserLinks } from "@services/navbarData";
 
 import logo from "@assets/logo.png";
 
 export default function Navbar() {
+  const { user } = useContext(UserContext);
+
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+
   return (
     <div>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 mx-4">
@@ -30,27 +37,40 @@ export default function Navbar() {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col justify-center lg:flex-row list-none lg:ml-auto mr-4">
-              <Link to="/">
-                <li className="nav-item">
-                  <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
-                    Home
-                  </p>
-                </li>
-              </Link>
-              <Link to="/pokemonlist">
-                <li className="nav-item">
-                  <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
-                    Pokemon List
-                  </p>
-                </li>
-              </Link>
-              <Link to="/itemlist">
-                <li className="nav-item">
-                  <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
-                    Item List
-                  </p>
-                </li>
-              </Link>
+              {navBarStandardLinks.map(
+                (link, key) =>
+                  ((link.private && user) || !link.private) && (
+                    <Link key={key} to={link.link}>
+                      <li className="nav-item">
+                        <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
+                          {link.name}
+                        </p>
+                      </li>
+                    </Link>
+                  )
+              )}
+              {navbarUserLinks.map((link, key) =>
+                user
+                  ? link.private &&
+                    user && (
+                      <Link key={key} to={link.link}>
+                        <li className="nav-item">
+                          <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
+                            {link.name}
+                          </p>
+                        </li>
+                      </Link>
+                    )
+                  : !link.private && (
+                      <Link key={key} to={link.link}>
+                        <li className="nav-item">
+                          <p className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-50 hover:scale-105 duration-700 ease-in-out mx-auto poppins">
+                            {link.name}
+                          </p>
+                        </li>
+                      </Link>
+                    )
+              )}
             </ul>
           </div>
         </div>
