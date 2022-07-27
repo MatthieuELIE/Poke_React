@@ -8,7 +8,9 @@ export default function FavoritePokemon({ isFavorite, handleClick }) {
     <button
       onClick={handleClick}
       type="button"
-      className="w-20 hover:opacity-50 hover:scale-105 duration-700 ease-in-out"
+      className={`w-20 hover:opacity-50 ${
+        isFavorite ? "focus:scale-110" : "focus:scale-90"
+      } duration-300 ease-in-out`}
     >
       <img
         src={isFavorite ? LikeColor : LikeBlack}

@@ -25,10 +25,14 @@ export default function PokemonPage() {
   const { pokemonId } = useParams();
 
   useEffect(async () => {
-    if (user) {
-      const favorites = await fetchUserFavorites(user.id);
-      setUser({ ...user, favorites });
-    }
+    const favorites = await fetchUserFavorites(user.id);
+    setUser({ ...user, favorites });
+  }, [user.favorites]);
+
+  useEffect(async () => {
+    const favorites = await fetchUserFavorites(user.id);
+    setUser({ ...user, favorites });
+
     const pokemonData = await fetchOnePokemonById(pokemonId);
     setPokemon(pokemonData);
 
@@ -36,7 +40,7 @@ export default function PokemonPage() {
     setEncounters(pokemonEncounters[0]?.location_area.name ?? "No Area");
 
     setPokemonImg(pokemonData.sprites.front_default);
-  }, [user]);
+  }, []);
 
   const handleClick = async (favoritePokemon) => {
     // eslint-disable-next-line
