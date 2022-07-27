@@ -1,0 +1,19 @@
+GET http://localhost:5000/favorites
+Content-Type: application/json
+
+{
+    "id": 1,
+    "email": "elie.matthieu2@gmail.com"
+}
+
+###
+
+POST http://localhost:5000/pokemon/9
+Content-Type: application/json
+
+{
+    "id": 1,
+    "email": "elie.matthieu2@gmail.com"
+}
+
+###

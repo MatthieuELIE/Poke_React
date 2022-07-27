@@ -13,7 +13,6 @@ export default function UserContextProvider({ children }) {
       setUser(await fetchMe());
       setLoading(false);
     };
-
     load();
   }, []);
 

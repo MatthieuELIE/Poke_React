@@ -11,3 +11,21 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`email`, `password`) VALUES
 ('elie.matthieu2@gmail.com', '$argon2d$v=19$m=12,t=3,p=1$N3VicHpma2w0M3IwMDAwMA$TJ/hOauZkQxrEKz+0VXsPw');
+
+--
+-- Structure de la table `favorites`
+--
+
+CREATE TABLE `favorites` (
+  `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `pokemon_id` INT NOT NULL,
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+);
+
+INSERT INTO `favorites` (`user_id`, `pokemon_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5);
