@@ -3,15 +3,20 @@ import { useParams } from "react-router-dom";
 
 import { UserContext } from "@components/UserContextProvider";
 
-import { fetchOnePokemonById, fetchPokemonEncountersById } from "@services/api";
+import FavoritePokemon from "@components/FavoritePokemon";
 
-import LikeColor from "@assets/LikeColor.png";
-import LikeBlack from "@assets/LikeBlack.png";
+import {
+  fetchOnePokemonById,
+  fetchPokemonEncountersById,
+  fetchUserFavorites,
+  addToFavorites,
+  removeFavorites,
+} from "@services/api";
 
 import { statsData } from "@services/statsData";
 
 export default function PokemonPage() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [pokemon, setPokemon] = useState();
   const [pokemonImg, setPokemonImg] = useState();
@@ -20,6 +25,10 @@ export default function PokemonPage() {
   const { pokemonId } = useParams();
 
   useEffect(async () => {
+    if (user) {
+      const favorites = await fetchUserFavorites(user.id);
+      setUser({ ...user, favorites });
+    }
     const pokemonData = await fetchOnePokemonById(pokemonId);
     setPokemon(pokemonData);
 
@@ -27,7 +36,40 @@ export default function PokemonPage() {
     setEncounters(pokemonEncounters[0]?.location_area.name ?? "No Area");
 
     setPokemonImg(pokemonData.sprites.front_default);
-  }, []);
+  }, [user]);
+
+  const handleClick = async (favoritePokemon) => {
+    // eslint-disable-next-line
+    if (isFavorite(favoritePokemon)) {
+      const favorite = user.favorites.find(
+        (fav) => fav.pokemon_id === favoritePokemon.id
+      );
+
+      removeFavorites(favorite.id);
+
+      setUser({
+        ...user,
+        favorites: user.favorites.filter(
+          (fav) => fav.pokemon_id !== favoritePokemon.id
+        ),
+      });
+    } else {
+      const favorite = await addToFavorites(user.id, pokemon.id);
+
+      setUser({
+        ...user,
+        favorites: [...user.favorites, favorite],
+      });
+    }
+  };
+
+  const isFavorite = (favoritePokemon) => {
+    return (
+      user?.favorites.find(
+        (favorite) => favorite.pokemon_id === favoritePokemon.id
+      ) !== undefined
+    );
+  };
 
   if (!pokemon) {
     return <div>Loading...</div>;
@@ -97,8 +139,15 @@ export default function PokemonPage() {
           </div>
           {user && (
             <div>
-              <img src={LikeColor} alt="Pokemon Liked" width="50px" />
-              <img src={LikeBlack} alt="Pokemon Liked" width="50px" />
+              {user && (
+                <div className="flex justify-center mb-2">
+                  <FavoritePokemon
+                    isFavorite={isFavorite(pokemon)}
+                    // eslint-disable-next-line
+                    handleClick={() => handleClick(pokemon)}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>

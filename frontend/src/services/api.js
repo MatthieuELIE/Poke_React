@@ -71,3 +71,18 @@ export const fetchMe = async (data) => {
 export const logout = async (data) => {
   return (await pokeReactApi.delete(`${API_URL}/logout`, data)).data;
 };
+
+// Appel favorites database
+export const fetchUserFavorites = async (userId) => {
+  return (await pokeReactApi.get(`${API_URL}/favorites`, { userId })).data;
+};
+
+export const addToFavorites = async (userId, pokemonId) => {
+  return (
+    await pokeReactApi.post(`${API_URL}/favorites`, { userId, pokemonId })
+  ).data;
+};
+
+export const removeFavorites = async (id) => {
+  return (await pokeReactApi.delete(`${API_URL}/favorites/${id}`)).data;
+};
