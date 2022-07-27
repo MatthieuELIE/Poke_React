@@ -24,8 +24,7 @@ CREATE TABLE `favorites` (
 );
 
 INSERT INTO `favorites` (`user_id`, `pokemon_id`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1, 5);
+(1, 6),
+(1, 25),
+(1, 94),
+(1, 157);
