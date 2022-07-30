@@ -60,6 +60,10 @@ export const login = async (data) => {
   return (await pokeReactApi.post(`${API_URL}/login`, data)).data;
 };
 
+export const signin = async (data) => {
+  return (await pokeReactApi.post(`${API_URL}/signin`, data)).data;
+};
+
 export const fetchMe = async (data) => {
   try {
     return (await pokeReactApi.get(`${API_URL}/me`, data)).data;

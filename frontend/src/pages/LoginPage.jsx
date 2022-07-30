@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { UserContext } from "@components/UserContextProvider";
@@ -10,6 +10,7 @@ import Ectoplasma from "@assets/Ectoplasma.png";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+
   const [error, setError] = useState();
   const { setUser } = useContext(UserContext);
 
@@ -73,12 +74,12 @@ export default function LoginPage() {
                 <p className="text-sm font-semibold mt-2 pt-1 text-slate-600">
                   Don&apos;t have an account?
                 </p>
-                <a
-                  href="#!"
+                <Link
+                  to="/register"
                   className="text-amber-600 hover:text-amber-700 focus:text-amber-700 transition duration-200 ease-in-out"
                 >
                   Register
-                </a>
+                </Link>
               </div>
             </div>
           </form>

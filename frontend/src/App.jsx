@@ -18,6 +18,7 @@ import ItemPage from "@pages/ItemPage";
 import FavoritesPage from "@pages/FavoritesPage";
 
 import LoginPage from "@pages/LoginPage";
+import RegisterPage from "@pages/RegisterPage";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
                 }
               />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
             </Routes>
           </main>
         </BrowserRouter>
