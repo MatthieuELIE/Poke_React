@@ -3,17 +3,17 @@ const AbstractManager = require("./AbstractManager");
 class UserManager extends AbstractManager {
   static table = "users";
 
-  findByEmail(email) {
+  async findByEmail(email) {
     return this.connection.query(
       `SELECT * FROM ${UserManager.table} WHERE email = ?`,
       [email]
     );
   }
 
-  insert(user) {
+  async insert(user) {
     return this.connection.query(
-      `INSERT INTO ${UserManager.table} (nickname, password) values (?, ?)`,
-      [user.nickname, user.password]
+      `INSERT INTO ${UserManager.table} (email, password) values (?, ?)`,
+      [user.email, user.password]
     );
   }
 }

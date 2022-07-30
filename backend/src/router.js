@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/login", UserController.login);
 router.get("/me", UserController.me);
 router.delete("/logout", UserController.logout);
+router.post("/signin", UserController.signin);
 
 router.get("/favorites", FavoriteController.read);
 router.post("/favorites", FavoriteController.add);
