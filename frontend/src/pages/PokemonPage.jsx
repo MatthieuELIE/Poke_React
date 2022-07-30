@@ -24,14 +24,18 @@ export default function PokemonPage() {
 
   const { pokemonId } = useParams();
 
-  useEffect(async () => {
-    const favorites = await fetchUserFavorites(user.id);
-    setUser({ ...user, favorites });
-  }, [user.favorites]);
+  if (user) {
+    useEffect(async () => {
+      const favorites = await fetchUserFavorites(user.id);
+      setUser({ ...user, favorites });
+    }, [user.favorites]);
+  }
 
   useEffect(async () => {
-    const favorites = await fetchUserFavorites(user.id);
-    setUser({ ...user, favorites });
+    if (user) {
+      const favorites = await fetchUserFavorites(user.id);
+      setUser({ ...user, favorites });
+    }
 
     const pokemonData = await fetchOnePokemonById(pokemonId);
     setPokemon(pokemonData);
@@ -69,7 +73,7 @@ export default function PokemonPage() {
 
   const isFavorite = (favoritePokemon) => {
     return (
-      user?.favorites.find(
+      user?.favorites?.find(
         (favorite) => favorite.pokemon_id === favoritePokemon.id
       ) !== undefined
     );
@@ -132,8 +136,11 @@ export default function PokemonPage() {
                     </span>{" "}
                     :
                   </h3>
-                  {pokemon.types.map((type) => (
-                    <p className="px-4 mx-2 font-semibold text-lg text-slate-600">
+                  {pokemon.types.map((type, index) => (
+                    <p
+                      key={index}
+                      className="px-4 mx-2 font-semibold text-lg text-slate-600"
+                    >
                       {type.type.name}
                     </p>
                   ))}
